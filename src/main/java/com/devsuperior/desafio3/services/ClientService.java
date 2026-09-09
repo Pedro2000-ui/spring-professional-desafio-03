@@ -3,9 +3,11 @@ package com.devsuperior.desafio3.services;
 import com.devsuperior.desafio3.dto.ClientDTO;
 import com.devsuperior.desafio3.entities.Client;
 import com.devsuperior.desafio3.repositories.ClientRepository;
+import com.devsuperior.desafio3.services.exceptions.DatabaseException;
 import com.devsuperior.desafio3.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -36,11 +38,18 @@ public class ClientService {
     @Transactional
     public ClientDTO insert(ClientDTO dto)
     {
-        Client entity = new Client();
-        copyDtoToEntity(dto, entity);
-        entity = clientRepository.save(entity);
+        try {
+            Client entity = new Client();
+            copyDtoToEntity(dto, entity);
+            entity = clientRepository.save(entity);
 
-        return new ClientDTO(entity);
+            return new ClientDTO(entity);
+        } catch (DataIntegrityViolationException e) {
+
+            //Como CPF é unique se tentar inserir dois clientes com o mesmo CPF, vai dar falha de integridade
+            throw new DatabaseException("Falha de integridade referencial");
+        }
+
     }
 
     @Transactional
@@ -64,6 +73,7 @@ public class ClientService {
             throw new ResourceNotFoundException("Recurso não encontrado");
         }
         clientRepository.deleteById(id);
+
     }
 
     private void copyDtoToEntity(ClientDTO dto, Client entity)

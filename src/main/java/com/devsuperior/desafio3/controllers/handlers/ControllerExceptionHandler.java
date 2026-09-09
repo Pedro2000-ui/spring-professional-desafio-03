@@ -1,6 +1,7 @@
 package com.devsuperior.desafio3.controllers.handlers;
 
 import com.devsuperior.desafio3.dto.CustomErrorDTO;
+import com.devsuperior.desafio3.services.exceptions.DatabaseException;
 import com.devsuperior.desafio3.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -13,10 +14,25 @@ import java.time.Instant;
 @ControllerAdvice
 public class ControllerExceptionHandler {
 
+    // 404
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<CustomErrorDTO> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request)
     {
         HttpStatus status = HttpStatus.NOT_FOUND;
+        CustomErrorDTO err = new CustomErrorDTO(
+                Instant.now(),
+                status.value(),
+                e.getMessage(),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(status).body(err);
+    }
+
+    // 400
+    @ExceptionHandler(DatabaseException.class)
+    public ResponseEntity<CustomErrorDTO> database(DatabaseException e, HttpServletRequest request)
+    {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
         CustomErrorDTO err = new CustomErrorDTO(
                 Instant.now(),
                 status.value(),

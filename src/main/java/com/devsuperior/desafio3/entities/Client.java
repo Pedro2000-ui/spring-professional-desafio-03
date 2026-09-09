@@ -15,6 +15,7 @@ public class Client {
     @Column(length = 100)
     private String    name;
 
+    // Coloquei UNIQUE para evitar clientes com o mesmo CPF
     @Column(length = 14, unique = true)
     private String    cpf;
 
