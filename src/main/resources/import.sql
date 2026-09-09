@@ -1,0 +1,10 @@
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Pedro Henrique Oliveira Brito', '15809530001', 7000.00, '2000-09-05', 0);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Luiz Fabiano Ribeiro Brito', '61616352086', 15000.00, '1973-10-06', 2);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Davi Oliveira Brito', '44685759052', 3000.00, '2006-10-06', 0);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Ivone Almeida de Oliveira', '40324878044', 2200.00, '1969-10-02', 2);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Neymar Júnior', '20518310094', 4500000.00, '1992-02-05', 5);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Cristiano Ronaldo', '15809530001', 208333333.33, '1985-02-05', 5);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Lionel Messi', '46840776085', 29000000.00, '1987-06-24', 3);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Isaac Newton', '21279519053', 7000000000000000.00, '1643-01-04', 0);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Albert Einstein', '21389776093', 1000000000000.00, '1879-03-14', 3);
+INSERT INTO tb_client(name, cpf, income, birth_date, children) VALUES ('Leonardo da Vinci', '82018555073', 1800000000000.00, '1452-04-15', 0);
