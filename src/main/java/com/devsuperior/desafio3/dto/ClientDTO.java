@@ -1,16 +1,28 @@
 package com.devsuperior.desafio3.dto;
 
 import com.devsuperior.desafio3.entities.Client;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.NumberFormat;
 
 import java.time.LocalDate;
 
 public class ClientDTO {
 
     private Long      id;
+
+    @NotBlank(message = "Campo requerido")
     private String    name;
+
+    @NotBlank(message = "Campo requerido")
+    @Size(min = 11, max = 11, message = "CPF deve ter exatamente 11 caracteres")
     private String    cpf;
     private Double    income;
+
+    @PastOrPresent(message = "Não é possível informar datas futuras")
     private LocalDate birthDate;
+
     private Integer   children;
 
     public ClientDTO() {}

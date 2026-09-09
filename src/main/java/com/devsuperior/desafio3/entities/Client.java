@@ -16,7 +16,7 @@ public class Client {
     private String    name;
 
     // Coloquei UNIQUE para evitar clientes com o mesmo CPF
-    @Column(length = 14, unique = true)
+    @Column(length = 11, unique = true)
     private String    cpf;
 
     private Double    income;
